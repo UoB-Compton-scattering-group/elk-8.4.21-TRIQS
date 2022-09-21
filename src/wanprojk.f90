@@ -15,7 +15,7 @@ integer, intent(in) :: nst
 integer, intent(in) :: vpl(3)
 real(8), intent(in) :: idx(nstsv)
 complex(8), intent(in) :: subulm(ld,ld,norb,nproj)
-integer, intent(in) :: sublm(ld,iorb,norb,nproj)
+integer, intent(in) :: sublm(ld,norb,nproj)
 complex(8), intent(in) :: symlm(ld,ld,norb,nproj)
 complex(8), intent(inout) :: wanprj(ld,mst,nspinor,norb,nproj) 
 !local
