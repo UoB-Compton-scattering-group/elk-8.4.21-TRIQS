@@ -25,7 +25,7 @@ do iorb=1,norb
   do ia=1,natoms(is)
     ias=idxas(ia,is)
 ! write to file
-    write(810,'("(Trace of) Wannier charge of projected orbital in global coordinates",I2,", atom ",I3," ")') iorb, ia
+    write(810,'("(Trace of) Wannier charge in global coordinates of projected orbital ",I2,", atom ",I3," ")') iorb, ia
     write(810,*) ''
     write(exfmt,'("(",I8,"(F16.8))")') lmmax
     do ispn=1,nspinor
