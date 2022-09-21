@@ -1,0 +1,105 @@
+
+
+Species :    1 (Ni), atom :    1
+
+ approximate nuclear radius :   0.7325707712E-04
+ number of mesh points to nuclear radius :    170
+
+ density at nuclear center      :    27065.61626    
+ density at nuclear surface     :    19469.68536    
+ average contact charge density :    21799.30518    
+
+ contact magnetic moment (mu_B) :   0.3556682277     -0.3250408784E-02 -0.5961585217E-04
+ contact field :   0.7942691198E-04 -0.7258729125E-06 -0.1331325846E-07
+  tesla :    18.66943519     -0.1706177033     -0.3129304790E-02
+
+ spin and orbital dipole field :  -0.6038677809E-05  0.1166101164E-05  0.6342070908E-08
+  tesla :   -1.419401827      0.2740941271      0.1490714908E-02
+
+
+Species :    1 (Ni), atom :    2
+
+ approximate nuclear radius :   0.7325707712E-04
+ number of mesh points to nuclear radius :    170
+
+ density at nuclear center      :    27065.62041    
+ density at nuclear surface     :    19469.68809    
+ average contact charge density :    21799.30825    
+
+ contact magnetic moment (mu_B) :   0.3560239771     -0.3179352632E-02  0.3878445782E-04
+ contact field :   0.7950635701E-04 -0.7100048359E-06  0.8661245165E-08
+  tesla :    18.68810889     -0.1668878840      0.2035840892E-02
+
+ spin and orbital dipole field :  -0.6143126486E-05 -0.5623083484E-06 -0.2821446664E-06
+  tesla :   -1.443952673     -0.1321715651     -0.6631859950E-01
+
+
+Species :    2 (F), atom :    1
+
+ approximate nuclear radius :   0.5278478738E-04
+ number of mesh points to nuclear radius :     89
+
+ density at nuclear center      :    469.6748179    
+ density at nuclear surface     :    458.0181065    
+ average contact charge density :    518.3705591    
+
+ contact magnetic moment (mu_B) :  -0.2076757064      0.1757535181E-02 -0.5037678888E-04
+ contact field :  -0.4637760353E-04  0.3924882270E-06 -0.1125001466E-07
+  tesla :   -10.90113718      0.9225504727E-01 -0.2644335709E-02
+
+ spin and orbital dipole field :  -0.3840346331E-04 -0.1592687822E-04 -0.2577673716E-07
+  tesla :   -9.026801516      -3.743640704     -0.6058867353E-02
+
+
+Species :    2 (F), atom :    2
+
+ approximate nuclear radius :   0.5278478738E-04
+ number of mesh points to nuclear radius :     89
+
+ density at nuclear center      :    469.6746466    
+ density at nuclear surface     :    458.0179388    
+ average contact charge density :    518.3703693    
+
+ contact magnetic moment (mu_B) :  -0.2078531243      0.1740868591E-02 -0.1670018648E-04
+ contact field :  -0.4641722404E-04  0.3887662872E-06 -0.3729442605E-08
+  tesla :   -10.91045005      0.9138019878E-01 -0.8766120359E-03
+
+ spin and orbital dipole field :  -0.3847659363E-04  0.1653003236E-04 -0.5230842188E-08
+  tesla :   -9.043990926       3.885413145     -0.1229518646E-02
+
+
+Species :    2 (F), atom :    3
+
+ approximate nuclear radius :   0.5278478738E-04
+ number of mesh points to nuclear radius :     89
+
+ density at nuclear center      :    469.6748179    
+ density at nuclear surface     :    458.0181065    
+ average contact charge density :    518.3705591    
+
+ contact magnetic moment (mu_B) :  -0.2076757064      0.1757535181E-02 -0.5037678888E-04
+ contact field :  -0.4637760353E-04  0.3924882270E-06 -0.1125001466E-07
+  tesla :   -10.90113718      0.9225504727E-01 -0.2644335709E-02
+
+ spin and orbital dipole field :  -0.3840346331E-04 -0.1592687822E-04 -0.2577673716E-07
+  tesla :   -9.026801516      -3.743640704     -0.6058867353E-02
+
+
+Species :    2 (F), atom :    4
+
+ approximate nuclear radius :   0.5278478738E-04
+ number of mesh points to nuclear radius :     89
+
+ density at nuclear center      :    469.6746466    
+ density at nuclear surface     :    458.0179388    
+ average contact charge density :    518.3703693    
+
+ contact magnetic moment (mu_B) :  -0.2078531243      0.1740868591E-02 -0.1670018648E-04
+ contact field :  -0.4641722404E-04  0.3887662872E-06 -0.3729442605E-08
+  tesla :   -10.91045005      0.9138019878E-01 -0.8766120359E-03
+
+ spin and orbital dipole field :  -0.3847659363E-04  0.1653003236E-04 -0.5230842188E-08
+  tesla :   -9.043990926       3.885413145     -0.1229518646E-02
+
+Note that the contact term is implicitly included in the spin dipole field
+ but may not match exactly with the directly calculated value.
