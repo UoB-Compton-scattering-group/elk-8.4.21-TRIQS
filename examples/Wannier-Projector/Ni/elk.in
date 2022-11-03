@@ -33,7 +33,7 @@ rgkmax
   8.5
 
 sppath
-  '../../species/'
+  '../../../species/'
 
 nempty
  10
