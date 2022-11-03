@@ -9,7 +9,7 @@ ngridk
  12 12 12
 
 sppath
-  '../../species/'
+  '../../../species/'
 
 rgkmax
  7.0
