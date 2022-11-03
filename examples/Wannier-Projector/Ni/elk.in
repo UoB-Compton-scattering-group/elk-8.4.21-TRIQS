@@ -10,6 +10,7 @@
 ! Example by Alyn D. N. James
 
 tasks
+  0
   805
 
 spinpol
@@ -33,7 +34,7 @@ rgkmax
   8.5
 
 sppath
-  '../../species/'
+  '../../../species/'
 
 nempty
  10
