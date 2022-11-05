@@ -33,7 +33,7 @@ integer ngp(nspnfv)
 
 !k index for reading in eigenvectors in genwfsvpwan
 ikp=0
-if(task.eq.820) ikp=ik
+if((task.eq.807).or.(task.eq.820)) ikp=ik
 ! this generates the second variational wavefunctions in the spherical harmoincs basis and the 
 ! intertitial wavefunctions are in real space.
 allocate(igpig(ngkmax,nspnfv))
