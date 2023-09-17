@@ -35,7 +35,6 @@ do iorb=1,norb
   do ia=1,natoms(is)
     ias=idxas(ia,is)
     if (done(ia)) cycle !
-!loop over each k-point
     ! loop over reduced k-point set
     call holdthd(nkpt,nthd)
     !$OMP PARALLEL DO DEFAULT(SHARED) &
