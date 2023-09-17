@@ -2,6 +2,7 @@
 subroutine writewanchg(ld,dmat)
 use modmain
 use modw90
+use modtest
 implicit none
 ! input
 integer, intent(in) :: ld
@@ -45,12 +46,19 @@ do iorb=1,norb
         chg=chg+z
         write(810,'("(Real) Wannier charge of spinor block = ",G14.8,"")') dble(z)
         write(810,'("")')
+        if (test) then
+          call writetest(600+iorb+ispn+jspn,'Spin Block Wannier Charge', &
+                         tol=1.d-4,rv=dble(z))
+        end if
       end do
     end do
   end do
   write(810,'("Total wan charge = ",G14.8,"")') dble(chg)
   write(810,'("")')
   write(810,'("")')
+  if (test) then
+    call writetest(800+iorb,'Total Wannier Charge',tol=1.d-4,rv=dble(chg))
+  end if
 end do
 
 close(810)
