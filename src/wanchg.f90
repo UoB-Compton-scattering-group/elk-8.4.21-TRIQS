@@ -36,6 +36,11 @@ do iorb=1,norb
     ias=idxas(ia,is)
     if (done(ia)) cycle !
 !loop over each k-point
+    ! loop over reduced k-point set
+    call holdthd(nkpt,nthd)
+    !$OMP PARALLEL DO DEFAULT(SHARED) &
+    !$OMP PRIVATE(mst,ispn,jspn,z1,z2,z3) &
+    !$OMP NUM_THREADS(nthd)
     do ik=1,nkpt
       mst=projst(ik)
       allocate(z1(lmmax,mst),z2(lmmax,mst),z3(lmmax,lmmax))
@@ -53,11 +58,15 @@ do iorb=1,norb
 !calculate wannier charge for ik
             call wanchgk(tlmdg,lmmax,mst,ik,idxwan(:,ik),z1,z2,z3)
           endif
+          !$OMP CRITICAL(wanchg_1)
           dmat(i:j,ispn,i:j,jspn,ias)=dmat(i:j,ispn,i:j,jspn,ias)+z3(:,:)*wkpt(ik)
+          !$OMP END CRITICAL(wanchg_1)
         end do
       end do
       deallocate(z1,z2,z3)
     end do
+    !$OMP END PARALLEL DO
+    call freethd(nthd)
     done(ia)=.true.
 ! adnj - loop over equivalent atoms and distribute dmat to them - symdmat will
 ! rotate dmat into equivalent atom
@@ -70,7 +79,7 @@ do iorb=1,norb
       end if
     end do
   end do
-enddo
+end do
 ! symmetrise the wannier density matrices
 call symdmat(lmaxdm,ld2,dmat)
 !exit routine for calculating the Green's function
