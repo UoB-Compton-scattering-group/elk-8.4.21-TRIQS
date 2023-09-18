@@ -98,7 +98,7 @@ do ik=1,nkpt
 !$OMP END CRITICAL(wanproj_)
 ! determine the projectors
   call wanprojk(ik,ld,nproj,nst,projst(ik),vkl(:,ik),idxwan(:,ik), &
-               subulm,sublm,symlm,wanprj(:,:,:,:,:,ik))
+                subulm,sublm,symlm,wanprj(:,:,:,:,:,ik))
 end do
 !$OMP END DO
 !$OMP END PARALLEL

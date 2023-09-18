@@ -111,6 +111,7 @@ do iorb=1,norb
   ld=max(ld,2*l+1)
   nproj=max(nproj,natoms(is))
 enddo
+!get basis rotation matrices for projector
 allocate(subulm(ld,ld,norb,nproj))
 allocate(sublm(ld,norb,nproj))
 subulm(:,:,:,:)=0.d0
@@ -201,7 +202,7 @@ if((task.ne.804).and.(task.ne.807).and.(task.ne.820)) then
   dmat(:,:,:,:,:)=0.d0
 !calculate and output the wannier charge
   call wanchg(.false.,.false.,.false.,nproj,projst, &
-               ld,ld2,nst,subulm,wanprj,zzero,dmat)
+              ld,ld2,nst,subulm,wanprj,zzero,dmat)
   if (mp_mpi) call writewanchg(ld2,dmat)
   deallocate(dmat)
 !calculate and output the wannier Green's functions

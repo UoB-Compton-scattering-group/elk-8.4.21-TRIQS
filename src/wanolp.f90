@@ -42,7 +42,7 @@ do ispn=1,nspinor
         p=lm
         jr=1
         do ir=1,nri
-            z1=z1+wrmt(jr,is)*u(jr)* &
+          z1=z1+wrmt(jr,is)*u(jr)* &
                wfmt(p,ias,ispn,ist)
           p=p+lmmaxi
           jr=jr+lradstp

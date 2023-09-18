@@ -57,7 +57,7 @@ do iw=1,nwplot
   dmat(:,:,:,:,:)=0.d0
   w=cmplx(wr(iw),swidth,8)
   call wanchg(.false.,.false.,.true.,nproj,projst,ld, &
-                 ld2,nst,subulm,wantrue,w,dmat)
+              ld2,nst,subulm,wantrue,w,dmat)
   do iorb=1,norb
     is=orb(iorb,1)
     l=orb(iorb,2)

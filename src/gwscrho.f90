@@ -149,7 +149,7 @@ do iscl=1,maxscl
     write(60,'("Kohn-Sham Fermi energy : ",G18.10)') efermi
   end if
 ! determine the GW Fermi energy
-  if(task.ne.808) call gwefermi !adnj edit
+  if(task.ne.808) call gwefermi !adnj edit not needed here for DFT+DMFT
   if (mp_mpi) then
     write(60,'("GW Fermi energy        : ",G18.10)') efermi
     flush(60)

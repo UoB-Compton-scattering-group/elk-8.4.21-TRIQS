@@ -96,16 +96,16 @@ do iorb=1,norb
     do ik=1,nkpt
       mst=projst(ik)
       idxwin(:,:)=0
-! determine the band index window for each spinor
+      ! determine the band index window for each spinor
       if((.not.spinorb).and.(spinpol)) then
         do ist=1,mst
           if((idxwan(ist,ik).gt.nstfv)) then
-      !if there are no majority states
+            !if there are no majority states
             if(ist.eq.1) then
               idxwin(1,2)=1
               idxwin(2,2)=mst
               exit
-      !if there are no minority states
+            !if there are no minority states
             elseif(ist.eq.nst) then
               idxwin(1,1)=1
               idxwin(2,1)=mst
@@ -123,6 +123,7 @@ do iorb=1,norb
         idxwin(1,:)=1
         idxwin(2,:)=mst
       endif
+      !write projector and related variables      
       write(800,'(I8,3G18.10," : k-point index, k-point (lattice coordinates)")') ik,vkl(:,ik)
       do ispn=1,nspinor
         istmin=idxwin(1,ispn)
@@ -131,14 +132,14 @@ do iorb=1,norb
           write(800,'(I8,I8,I8," : spinor index, minimum and maximum band indices ")') ispn,0,0
           cycle
         endif
-    !real part
         write(800,'(I8,I8,I8," : spinor index, minimum and maximum band indices")') &
                                                  ispn,idxwan(istmin,ik),idxwan(istmax,ik)
+        !projector real part
         do lm=1,lmmax
           write(800,*) (dble(wanprj(lm,ist,ispn,iorb,ia,ik)), ist=istmin,istmax)
         end do
         write(800,'("")')
-    !imag part
+        !projector imag part
         do lm=1,lmmax
           write(800,*) (aimag(wanprj(lm,ist,ispn,iorb,ia,ik)), ist=istmin,istmax)
         end do

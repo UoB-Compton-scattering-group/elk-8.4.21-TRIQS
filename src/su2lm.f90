@@ -19,7 +19,7 @@ complex(8), allocatable :: ulm(:,:,:),z(:),zz(:)
 character(50) fname
 
 ! Output projectors are in the Spherical harmonic basis, but the projectors
-! Will have been constructed in the user specified irreducible basis
+! will have been constructed in the user specified irreducible basis
 ! rotation matrix to real spherical harmonics (cubic basis)
 
 ! indices for desired portion of the rotation matrix
@@ -48,7 +48,7 @@ elseif (lmirep) then
     write(50,'("Species : ",I4," (",A,"), atom : ",I4)') is,trim(spsymb(is)),ia
     do ll=0,lmaxdos
      do lm=ll**2+1,(ll+1)**2
-       write(50,'(" l = ",I2,", m = ",I2,", lm= ",I3," : ",G18.10)') ll,m, &
+        write(50,'(" l = ",I2,", m = ",I2,", lm= ",I3," : ",G18.10)') ll,m, &
                                                              lm,elm(lm,ias)
       end do
     end do
@@ -77,31 +77,31 @@ complex(8), intent(inout) :: cub(lmmax,lmmax) !assumed to be zero at entry of su
 integer i
 !define the cubic unitary rotation matrix
 if(l.eq.0) then
- cub(1,1)=1.d0
+  cub(1,1)=1.d0
 elseif(l.eq.1) then
- cub(1,1)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(1,3)=cmplx(0.d0,-1.d0/sqrt(2.d0),8)
- cub(2,1)=cmplx(0.d0,1.d0/sqrt(2.d0),8); cub(2,3)=cmplx(0.d0,1.d0/sqrt(2.d0),8)
- cub(3,2)=cmplx(1.d0,0.d0,8)
+  cub(1,1)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(1,3)=cmplx(0.d0,-1.d0/sqrt(2.d0),8)
+  cub(2,1)=cmplx(0.d0,1.d0/sqrt(2.d0),8); cub(2,3)=cmplx(0.d0,1.d0/sqrt(2.d0),8)
+  cub(3,2)=cmplx(1.d0,0.d0,8)
 elseif(l.eq.2) then
- cub(1,3)=cmplx(1.d0,0.d0,8)
- cub(2,1)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(2,5)=cmplx(1.d0/sqrt(2.d0),0.d0,8)
- cub(3,1)=cmplx(-1.d0/sqrt(2.d0),0.d0,8); cub(3,5)=cmplx(1.d0/sqrt(2.d0),0.d0,8)
- cub(4,2)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(4,4)=cmplx(-1.d0/sqrt(2.d0),0.d0,8)
- cub(5,2)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(5,4)=cmplx(1.d0/sqrt(2.d0),0.d0,8)
+  cub(1,3)=cmplx(1.d0,0.d0,8)
+  cub(2,1)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(2,5)=cmplx(1.d0/sqrt(2.d0),0.d0,8)
+  cub(3,1)=cmplx(-1.d0/sqrt(2.d0),0.d0,8); cub(3,5)=cmplx(1.d0/sqrt(2.d0),0.d0,8)
+  cub(4,2)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(4,4)=cmplx(-1.d0/sqrt(2.d0),0.d0,8)
+  cub(5,2)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(5,4)=cmplx(1.d0/sqrt(2.d0),0.d0,8)
 elseif(l.eq.3) then
- cub(1,1)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(1,7)=cmplx(-1.d0/sqrt(2.d0),0.d0,8)
- cub(2,2)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(2,6)=cmplx(1.d0/sqrt(2.d0),0.d0,8)
- cub(3,3)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(3,5)=cmplx(-1.d0/sqrt(2.d0),0.d0,8)
- cub(4,4)=cmplx(1.d0,0.d0,8)
- cub(5,3)=cmplx(0.d0,1.d0/sqrt(2.d0),8); cub(5,5)=cmplx(0.d0,1.d0/sqrt(2.d0),8)
- cub(6,2)=cmplx(0.d0,1.d0/sqrt(2.d0),8); cub(6,6)=cmplx(0.d0,-1.d0/sqrt(2.d0),8)
- cub(7,1)=cmplx(0.d0,1.d0/sqrt(2.d0),8); cub(7,7)=cmplx(0.d0,1.d0/sqrt(2.d0),8)
+  cub(1,1)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(1,7)=cmplx(-1.d0/sqrt(2.d0),0.d0,8)
+  cub(2,2)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(2,6)=cmplx(1.d0/sqrt(2.d0),0.d0,8)
+  cub(3,3)=cmplx(1.d0/sqrt(2.d0),0.d0,8); cub(3,5)=cmplx(-1.d0/sqrt(2.d0),0.d0,8)
+  cub(4,4)=cmplx(1.d0,0.d0,8)
+  cub(5,3)=cmplx(0.d0,1.d0/sqrt(2.d0),8); cub(5,5)=cmplx(0.d0,1.d0/sqrt(2.d0),8)
+  cub(6,2)=cmplx(0.d0,1.d0/sqrt(2.d0),8); cub(6,6)=cmplx(0.d0,-1.d0/sqrt(2.d0),8)
+  cub(7,1)=cmplx(0.d0,1.d0/sqrt(2.d0),8); cub(7,7)=cmplx(0.d0,1.d0/sqrt(2.d0),8)
 else
- write(*,*) 'Can not rotate spherical harmonic basis to cubic basis for l>3.'
- write(*,*) 'Spherical harmonics will be used instead'
- do i=1,lmmax
-   cub(i,i)=1.d0
- enddo
+  write(*,*) 'Can not rotate spherical harmonic basis to cubic basis for l>3.'
+  write(*,*) 'Spherical harmonics will be used instead'
+  do i=1,lmmax
+    cub(i,i)=1.d0
+  enddo
 endif
 return
 end subroutine

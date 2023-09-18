@@ -33,13 +33,13 @@ do iorb=1,norb
       write(fname,'("WANSF_L",I2.2,"_S",I2.2,"_A",I4.4,"_",I2.2,"")') l,is,ia,lm1
       open(801,file=trim(fname)//trim(filext),form='FORMATTED')
       write(exfmt,'("(",I8,"(F16.8))")') lmmax+1
-        do ispn=1,nspinor
-          do jspn=1,nspinor
-            if((ispn.ne.jspn).and.(.not.spcpl)) cycle
-            do iw=1,nwplot
+      do ispn=1,nspinor
+        do jspn=1,nspinor
+          if((ispn.ne.jspn).and.(.not.spcpl)) cycle
+          do iw=1,nwplot
             !write the spectral function
-              write(801,exfmt)wr(iw), &
-              (-aimag(gloc(iw,lm1,ispn,lm2,jspn,iorb,ia))/pi,lm2=1,lmmax)
+            write(801,exfmt)wr(iw), &
+            (-aimag(gloc(iw,lm1,ispn,lm2,jspn,iorb,ia))/pi,lm2=1,lmmax)
           end do
           write(801,'("")')
         end do
