@@ -18,7 +18,7 @@ complex(8), intent(in) :: subulm(ld,ld,norb,nproj)
 complex(8), intent(inout) :: wanprj(ld,nst,nspinor,norb,nproj,nkpt)
 !local
 integer i,nea,ik,ist,ispn,ias,jas,lp,nthd,iorb,is,l
-integer lm,rlm,lmmax,isym,lspl,lm1,ia,ja,ka,la
+integer lm,rlm,lmmax,isym,lspl,lm1,ia,ja,ka,la,n
 complex(8), allocatable :: symlm(:,:,:,:), a(:,:)
 complex(8), allocatable :: z(:),zz(:),z1(:,:)
 integer, allocatable :: idxiea(:)
@@ -105,20 +105,11 @@ end do
 call freethd(nthd)
 ! synchronise MPI processes
 call mpi_barrier(mpicom,ierror)
-! broadcast projector array to every MPI process
+! reduce wanprj array from every MPI process
 if (np_mpi.gt.1) then
-  do ik=1,nkpt
-    do i=1,ld
-      do ist=1,nst
-        do ispn=1,nspinor
-          do iorb=1,norb
-            lp=mod(ik-1,np_mpi)
-            call mpi_bcast(wanprj(i,ist,ispn,iorb,:,ik),nproj,mpi_double_complex,lp,mpicom,ierror)
-          end do
-        end do
-      end do
-    end do
-  end do
+  n=ld*nst*nspinor*norb*nproj*nkpt
+  call mpi_allreduce(mpi_in_place,wanprj,n,mpi_double_complex, &
+                     mpi_sum,mpicom,ierror)
 end if
 deallocate(symlm)
 return

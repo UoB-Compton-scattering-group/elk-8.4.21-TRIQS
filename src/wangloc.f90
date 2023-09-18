@@ -25,7 +25,7 @@ complex(8), intent(in) :: subulm(ld,ld,norb,nproj)
 complex(8), intent(in) :: wantrue(ld,nst,nspinor,norb,nproj,nkpt)
 complex(8), intent(inout) :: gloc(nwplot,ld,nspinor,ld,nspinor,norb,nproj)
 ! local variables
-integer iw,ispn,jspn,iorb,lmi,lmj
+integer iw,ispn,jspn,iorb,lmi,lmj,n
 integer nthd,lp,is,ia,ias,i,j,l,lmmax,ld2
 real(8) dw
 complex(8) g,w
@@ -42,6 +42,8 @@ end do
 
 ld2=(lmaxdm+1)**2
 allocate(dmat(ld2,nspinor,ld2,nspinor,natmtot))
+!ensure that gloc is zero
+gloc(:,:,:,:,:,:,:)=0.d0
 
 ! synchronise MPI processes
 call mpi_barrier(mpicom,ierror)
@@ -53,21 +55,24 @@ call holdthd(nwplot/np_mpi,nthd)
 !$OMP PRIVATE(i,j,ispn,jspn) &
 !$OMP NUM_THREADS(nthd)
 !$OMP DO
+!calculate local Greens's function
 do iw=1,nwplot
   dmat(:,:,:,:,:)=0.d0
   w=cmplx(wr(iw),swidth,8)
+  !calculate loc Green's function at frequency w
+  !and store in dmat
   call wanchg(.false.,.false.,.true.,nproj,projst,ld, &
               ld2,nst,subulm,wantrue,w,dmat)
   do iorb=1,norb
+    !projector properties
     is=orb(iorb,1)
     l=orb(iorb,2)
     lmmax=2*l+1
     i=l**2+1
     j=(l+1)**2
-    do ia=1,natoms(is)
-    !projector properties
-      ias=idxas(ia,is)
     !put dmat into local Green's function
+    do ia=1,natoms(is)
+      ias=idxas(ia,is)
       do ispn=1,nspinor
         do jspn=1,nspinor
           gloc(iw,1:lmmax,ispn,1:lmmax,jspn,iorb,ia)=dmat(i:j,ispn,i:j,jspn,ias)
@@ -82,22 +87,11 @@ call freethd(nthd)
 ! synchronise MPI processes
 call mpi_barrier(mpicom,ierror)
 deallocate(dmat)
-! broadcast local green's function array array to every MPI process
+! reduce local green's function array from every MPI process
 if (np_mpi.gt.1) then
-  do iw=1,nwplot
-    do lmi=1,ld
-      do ispn=1,nspinor
-        do lmj=1,ld
-          do jspn=1,nspinor
-            do iorb=1,norb
-              lp=mod(iw-1,np_mpi)
-              call mpi_bcast(gloc(iw,lmi,ispn,lmj,jspn,iorb,:),nproj,mpi_double_complex,lp,mpicom,ierror)
-            end do
-          end do
-        end do
-      end do
-    end do
-  end do
+  n=nwplot*ld*nspinor*ld*nspinor*norb*nproj
+  call mpi_allreduce(mpi_in_place,gloc,n,mpi_double_complex, &
+                     mpi_sum,mpicom,ierror)
 end if
 !rotate to new basis
 if (lmirep) then
